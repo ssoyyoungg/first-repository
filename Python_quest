@@ -1,0 +1,250 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/ssoyyoungg/first-repository/blob/master/Python_quest\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "***Quest. 회문인지 아닌지 확인하는 프로그램.***\n",
+        "\n",
+        "**조건.**\n",
+        "\n",
+        "단어를 입력받을 수 있게 한다.\n",
+        "\n",
+        "입력된 단어를 뒤집어서 출력할 수 있게 한다.\n",
+        "\n",
+        "입력된 단어가 회문이 맞는지 확인하여 출력할 수 있게 한다.\n",
+        "\n",
+        "자료형, 제어문, 함수를 활용한다."
+      ],
+      "metadata": {
+        "id": "Izn351AdKoFo"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Tdch73wXHW04",
+        "outputId": "1f69008d-c24e-4061-cc47-cc610c7301a7"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "아이우이아\n",
+            "입력 단어: 아이우이아\n",
+            "역순 단어: 아이우이아\n",
+            "회문이 맞습니다\n"
+          ]
+        }
+      ],
+      "source": [
+        "# 입력받기\n",
+        "word = input(\"\")\n",
+        "\n",
+        "# 출력하기\n",
+        "print(\"입력 단어:\", word)\n",
+        "\n",
+        "# 함수 정의\n",
+        "def wooYoungWoo(input):\n",
+        "    # 뒤집기\n",
+        "    reversedWord = word[::-1]\n",
+        "    print(\"역순 단어:\" ,reversedWord)\n",
+        "\n",
+        "    #확인작업\n",
+        "    if word == reversedWord:\n",
+        "        print(\"회문이 맞습니다\")\n",
+        "    else:\n",
+        "        print(\"회문이 아닙니다\")\n",
+        "\n",
+        "# 테스트\n",
+        "wooYoungWoo(word)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "word = input(\"\")\n",
+        "\n",
+        "print(\"입력 단어:\", word)\n",
+        "\n",
+        "def reverseWord(input):\n",
+        "    reversedWord = ''\n",
+        "\n",
+        "    for i in word :\n",
+        "        reversedWord = i + reversedWord\n",
+        "        print(\"역순 단어: \", reversedWord)\n",
+        "\n",
+        "    if word == reversedWord:\n",
+        "        print(\"맞아요\")\n",
+        "    else:\n",
+        "        print(\"아니에요\")\n",
+        "\n",
+        "reverseWord(word)"
+      ],
+      "metadata": {
+        "id": "AWu7iJZwSIby",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "0aafdfe8-b1b7-46a9-e583-e74b872f080d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "고고구구고고\n",
+            "입력 단어: 고고구구고고\n",
+            "역순 단어:  고\n",
+            "역순 단어:  고고\n",
+            "역순 단어:  구고고\n",
+            "역순 단어:  구구고고\n",
+            "역순 단어:  고구구고고\n",
+            "역순 단어:  고고구구고고\n",
+            "맞아요\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "word = input(\"\")\n",
+        "\n",
+        "print(\"입력 단어:\", word)\n",
+        "\n",
+        "def reverseWord(input):\n",
+        "    reversedWord = ''\n",
+        "\n",
+        "    for i in word :\n",
+        "        reversedWord = i + reversedWord\n",
+        "        print(\"역순 단어: \", reversedWord)\n",
+        "\n",
+        "    if word == reversedWord:\n",
+        "        print(\"맞아요\")\n",
+        "    else:\n",
+        "        print(\"아니에요\")\n",
+        "\n",
+        "reverseWord(word)"
+      ],
+      "metadata": {
+        "id": "hFhf7FXgbGJ5"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "l90nkn_hcYe-"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "word = input(\"\")\n",
+        "\n",
+        "print(\"입력 단어:\", word)\n",
+        "\n",
+        "abc = list(word)\n",
+        "\n",
+        "print(abc)\n",
+        "\n",
+        "# for i in list:\n",
+        "#     list[i], list[-i] = list[-i], list[i]\n",
+        "#     print(list)"
+      ],
+      "metadata": {
+        "id": "sBeTujjzWOID",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 356
+        },
+        "outputId": "619f1e13-0ae9-43a6-f33f-58cd36535e94"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "KeyboardInterrupt",
+          "evalue": "Interrupted by user",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m                         Traceback (most recent call last)",
+            "\u001b[0;32m<ipython-input-43-fbaf31721018>\u001b[0m in \u001b[0;36m<cell line: 1>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mword\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0minput\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      2\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"입력 단어:\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mword\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      4\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      5\u001b[0m \u001b[0mabc\u001b[0m \u001b[0;34m=\u001b[0m\u001b[0mlist\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mword\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.10/dist-packages/ipykernel/kernelbase.py\u001b[0m in \u001b[0;36mraw_input\u001b[0;34m(self, prompt)\u001b[0m\n\u001b[1;32m    849\u001b[0m                 \u001b[0;34m\"raw_input was called, but this frontend does not support input requests.\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    850\u001b[0m             )\n\u001b[0;32m--> 851\u001b[0;31m         return self._input_request(str(prompt),\n\u001b[0m\u001b[1;32m    852\u001b[0m             \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_parent_ident\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    853\u001b[0m             \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_parent_header\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.10/dist-packages/ipykernel/kernelbase.py\u001b[0m in \u001b[0;36m_input_request\u001b[0;34m(self, prompt, ident, parent, password)\u001b[0m\n\u001b[1;32m    893\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mKeyboardInterrupt\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    894\u001b[0m                 \u001b[0;31m# re-raise KeyboardInterrupt, to truncate traceback\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 895\u001b[0;31m                 \u001b[0;32mraise\u001b[0m \u001b[0mKeyboardInterrupt\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Interrupted by user\"\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    896\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mException\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0me\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    897\u001b[0m                 \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mlog\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mwarning\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Invalid Message:\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mexc_info\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mTrue\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m: Interrupted by user"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# 회고 기홍\n",
+        "\n",
+        "* 여러가지 방법을 시도해본 것이 좋았음.\n",
+        "방법은 슬라이싱을 활용하는 방법과, 반복문을 사용하는 방법을 시도해보았는데,\n",
+        "리스트와 반복문을 사용하는 방법도 시도해보면 익숙해지는데 도움이 되겠다고 생각함.\n",
+        "\n",
+        "* 가장 리소스를 적게활용하는 방법은 기존 함수를 활용하는 것이 가장 적은 리소스로 가볍게 돌아갈 것 같다는 생각.\n",
+        "\n",
+        "* 변수명(reversedWord)과 함수명(reverseWord)을 헷갈리게 작명하여, 함수명을 wooYoungWoo로 변경함.\n"
+      ],
+      "metadata": {
+        "id": "iw9k6oGsc4-E"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**회고 김소영**\n",
+        "\n",
+        "\n",
+        "\n",
+        "*   오류가 생긴 부분을 수정하면서 몰랐거나헷갈렸던 내용에 대해 짚고 넘어갈수 있었음\n",
+        "\n",
+        "*   혼자 코딩을 할 때 보다 상대방과 함께 코딩을 하니 내 머리에서는 나오지 않던 생각들을 공유할 수 있어서 코드가 좀 더 풍부해졌음\n",
+        "\n",
+        "*  어떻게 하면 코드를 좀 더 간결하게 작성할 수 있을까 고민하고 최적의 방법을 찾기 위해 노력함"
+      ],
+      "metadata": {
+        "id": "vUP1pqRZfS3D"
+      }
+    }
+  ]
+}
