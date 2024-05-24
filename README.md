@@ -8,7 +8,7 @@
 - 문제에서 요구하는 기능이 정상적으로 작동하는지? (요구하는 기능들이 정상적으로 잘 작동합니다)
     - 해당 조건을 만족하는 부분의 코드 및 결과물을 근거로 첨부
   
- # 츨력결과 예시
+츨력결과 예시
 계산기 프로그램을 시작하겠습니다.
 첫번째 숫자를 입력해 주세요.2
 연산자를 입력해 주세요. (+,-,*,/,** 연산자만 가능)+
@@ -22,15 +22,16 @@
 - 주석을 보고 코드 이해가 잘 되었는지 확인 (Confirmed, 하기에 부연 설명)
    - 잘 작성되었다고 생각되는 부분을 근거로 첨부합니다.
   (가독성을 위해 그리고 오류 발생시 수정의 편리함을 위해서 각 코딩의 구조를 세분화였고 해당 코드가 어떤 위치에서 어떤 목적으로 사용되었는지 주석을 통해 자세하게 구현하였습니다)
-  # 실제 계산은 calculator 함수에서 전담
+  
+  실제 계산은 calculator 함수에서 전담
   result = calculator(first, operator, second)
 
-  # ZeroDivisionError 상황에 대한 처리
+  ZeroDivisionError 상황에 대한 처리
   if result == "ZeroDivisionError":
     print("0으로 나눌 수 없습니다. 다시 입력해 주세요.")
     continue
 
-  # 계산 결과 출력
+  계산 결과 출력
   print(first, operator, second, "=", result)
 
   is_continue = input("계속하시겠습니까?(Y/N)").lower()
