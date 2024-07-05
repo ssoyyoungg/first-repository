@@ -1,1 +1,75 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          centerTitle: true,
+          leading: Icon(Icons.star),
+          title: Text('플러터 앱 만들기',
+              style: TextStyle(color: Colors.white)),
+        ),
+        body: Stack(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: () {
+                  print("버튼이 눌렸습니다");
+                },
+                child: Text("TEXT"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  textStyle: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            SizedBox(height: 20.0),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Stack(
+                //alignment: Alignment.center,
+                children: [
+                  Container(
+                    width: 300,
+                    height: 300,
+                    color: Colors.red,
+                  ),
+                  Container(
+                    width: 240,
+                    height: 240,
+                    color: Colors.orange,
+                  ),
+                  Container(
+                    width: 180,
+                    height: 180,
+                    color: Colors.yellow,
+                  ),
+                  Container(
+                    width: 120,
+                    height: 120,
+                    color: Colors.green,
+                  ),
+                  Container(
+                    width: 60,
+                    height: 60,
+                    color: Colors.blue,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
