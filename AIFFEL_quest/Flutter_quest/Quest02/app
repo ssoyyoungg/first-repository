@@ -9,11 +9,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
+        appBar: AppBar( // appbar 설정
           backgroundColor: Colors.blue,
           centerTitle: true,
-          leading: Icon(Icons.star),
-          title: Text('플러터 앱 만들기',
+          leading: Icon(Icons.star), //icon 설정
+          title: Text('플러터 앱 만들기', //textbutton 설정
               style: TextStyle(color: Colors.white)),
         ),
         body: Stack(
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
               alignment: Alignment.center,
               child: ElevatedButton(
                 onPressed: () {
-                  print("버튼이 눌렸습니다");
+                  print("버튼이 눌렸습니다"); // onpresse를 사용해 textbutton이 눌렸을 때 출력할 message 설정
                 },
                 child: Text("TEXT"),
                 style: ElevatedButton.styleFrom(
@@ -31,12 +31,12 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 20.0),// textbutton과 container 사이 공간을 띄우기 위해 설정
             Align(
               alignment: Alignment.bottomCenter,
               child: Stack(
                 //alignment: Alignment.center,
-                children: [
+                children: [ // container 설정, 60씩 작아지게 설정
                   Container(
                     width: 300,
                     height: 300,
@@ -71,5 +71,10 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+//회고 : - 한줄한줄 입력할 때마다 변하는 화면을 화면을 보면서 실습하니까 재밌었고, 어디를 수정해야되는지 바로바로 캐치할 수 있어서 좋았다.
+         - textbutton과 container가 붙은채 출력이 돼서 어떻게 바꿔야되나 찾아보던중 승우님께서 sizebox로 해결가능함을 알려주셔서 문제를 해결할 수 있었다.
+
 
 
