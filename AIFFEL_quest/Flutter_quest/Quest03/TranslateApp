@@ -90,3 +90,9 @@ class SecondPage extends StatelessWidget { // SecondPage 클래스를 정의
     );
   }
 }
+
+
+
+회고 : - 아이콘을 구글 말고 다른곳에서 import 해서 사용할 수 있다는 사실을 알게됨
+      - 버튼을 누를때마다 사진과 콘솔 창 출력이 바뀌는것에 어려움을 겪어서 지피티와 교재의 도움을 받았음
+      
