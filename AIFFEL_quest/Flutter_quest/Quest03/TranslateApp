@@ -1,1 +1,92 @@
+import 'package:flutter/material.dart'; 
 
+void main() {
+  runApp(MyApp()); 
+}
+
+class MyApp extends StatelessWidget { 
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: FirstPage(), // 첫 번째 페이지를 홈 화면으로 설정
+    );
+  }
+}
+
+class FirstPage extends StatefulWidget { 
+  @override
+  _FirstPageState createState() => _FirstPageState(); // 상태 객체를 생성
+}
+
+class _FirstPageState extends State<FirstPage> { // 상태 객체를 정의
+  bool is_cat = true; // is_cat 변수를 정의하고 초기값을 true로 설정
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold( // 
+      appBar: AppBar( // 상단 앱바 구성
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.pets)), 
+        title: Text("First page", style: TextStyle(color: Colors.white)), 
+        centerTitle: true, // 제목을 가운데 정렬
+        backgroundColor: Colors.green,
+      ),
+      body: Center( 
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, // 위젯 수직 정렬
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                print("is_cat: $is_cat"); // 현재 is_cat 값을 콘솔에 출력
+                setState(() {
+                  is_cat = false; // is_cat 값을 false로 설정
+                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SecondPage(isCat: is_cat), // SecondPage로 이동하고 is_cat 값을 전달
+                  ),
+                );
+              },
+              child: Text('Next'), // 버튼의 텍스트를 설정
+            ),
+            SizedBox(height: 20), // 버튼과 이미지 사이에 20픽셀의 간격 설정
+            Image.network('https://via.placeholder.com/150/0000FF/808080?Text=Cat'), 
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget { // SecondPage 클래스를 정의
+  final bool isCat; // isCat 변수를 정의합니다.
+
+  SecondPage({required this.isCat}); // isCat 변수를 생성자에서 초기화
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold( // 
+      appBar: AppBar( // 
+        title: Text("Second page", style: TextStyle(color: Colors.white)), 
+        centerTitle: true,
+        backgroundColor: Colors.green,
+      ),
+      body: Center( 
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, 
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                print("Received is_cat: $isCat"); // 전달된 isCat 값을 콘솔에 출력
+                Navigator.pop(context); // 이전 페이지로
+              },
+              child: Text('Back'), 
+            ),
+            SizedBox(height: 20),
+            Image.network('https://via.placeholder.com/150/FF0000/FFFFFF?Text=Dog'),
+          ],
+        ),
+      ),
+    );
+  }
+}
