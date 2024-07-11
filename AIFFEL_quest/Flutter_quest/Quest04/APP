@@ -1,0 +1,269 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'My First App',
+      home: MyPage(),
+    );
+  }
+}
+
+class MyPage extends StatefulWidget {
+  @override
+  _MyPageState createState() => _MyPageState();
+}
+
+class _MyPageState extends State<MyPage> {
+  int screenIndex = 0;
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('수강권'),
+        actions: [
+          IconButton(icon: Icon(Icons.notifications_none), onPressed: null),
+          IconButton(icon: Icon(Icons.notifications_none), onPressed: null),
+        ],
+        
+      ),
+      
+      
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            height: 1.0,
+            width: double.infinity,
+            color: Colors.black,
+          ),
+          SizedBox(height: 20), // AppBar와 Text 사이의 여백
+          
+          Text(
+            '수강권',
+            style: TextStyle(fontSize: 20),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DetailPage()),
+              ); // 수강권 containerbox 눌렀을 때 
+            },
+            child: Container(
+              width: 650,
+              height: 300,
+              padding: EdgeInsets.all(40), // 패딩 속성
+              margin: EdgeInsets.all(30), // 마진 속성
+              decoration: BoxDecoration(
+                color: Colors.blue, // 컨테이너의 background color
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30),
+                ), // 컨테이너의 border 모양
+              ),
+              child: Text(
+                "8:1 횟수제 주3회\n\n본점이벤트 40회(주3회)\n\n\n2024.4. 24 ~ 2024. 8. 21(41일 남음)\n\n\n\n                                      예약가능 7       취소가능  9        잔여  7/40",
+                style: TextStyle(fontSize: 15, color: Colors.white),
+              ),
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: screenIndex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.confirmation_number), label: '수강권'),
+          BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: '수업예약'),
+          BottomNavigationBarItem(icon: Icon(Icons.timelapse), label: '이용내역'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: '마이페이지'),
+          BottomNavigationBarItem(icon: Icon(Icons.chair), label: '라운지'),
+        ],
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black54,
+        onTap: (value) {
+          setState(() {
+            screenIndex = value;
+          });
+
+          if (value == 4) { //라운지 탭 눌렀을 때 
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BoardPage()),
+            );
+          }
+        },
+      ),
+    );
+  }
+}
+
+class DetailPage extends StatefulWidget {
+  @override
+  _DetailPageState createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  int screenIndex = 0;
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('수강권 상세정보'),
+        actions: [
+          IconButton(icon: Icon(Icons.notifications_none), onPressed: null),
+          IconButton(icon: Icon(Icons.notifications_none), onPressed: null),
+        ],
+      ),
+      body: Column(
+        children: [
+          Container(
+            height: 1.0,
+            width: double.infinity,
+            color: Colors.black,
+          ), // AppBar와 Container사이의 경계선
+          SizedBox(height: 10), // AppBar와 Container 사이의 간격을 줄임
+          Container(
+            width: 650,
+            height: 250,
+            padding: EdgeInsets.all(35), // 패딩 속성
+            margin: EdgeInsets.all(30), // 마진 속성
+            decoration: BoxDecoration(
+              color: Colors.blue, // 컨테이너의 background color
+              borderRadius: BorderRadius.all(
+                Radius.circular(30),
+              ), // 컨테이너의 border 모양
+            ),
+            child: Text(
+              "8:1 횟수제 주3회\n\n본점이벤트 40회(주3회)\n\n2024.4. 24 ~ 2024. 8. 21(41일 남음)\n\n\n                                      예약가능 7       취소가능  9        잔여  7/40",
+              style: TextStyle(fontSize: 15, color: Colors.white),
+            ),
+          ),
+          Text(
+            '상세정보',
+            style: TextStyle(fontSize: 16),
+          ),
+          Container(
+            width: 650,
+            height: 70,
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 10), // 패딩 속성
+            margin: EdgeInsets.all(30), // 마진 속성
+            decoration: BoxDecoration(
+              color: Colors.blue, // 컨테이너의 background color
+            ),
+            child: Text(
+              "잔여 7회 41일 남음\n출석 33     결석 0     노쇼 0     취소 14",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 15, color: Colors.white),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text("수업 예약하기"),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: screenIndex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.confirmation_number), label: '수강권'),
+          BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: '수업예약'),
+          BottomNavigationBarItem(icon: Icon(Icons.timelapse), label: '이용내역'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: '마이페이지'),
+          BottomNavigationBarItem(icon: Icon(Icons.chair), label: '라운지'),
+        ],
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black54,
+        onTap: (value) {
+          setState(() {
+            screenIndex = value;
+          });
+
+          if (value == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BoardPage()),
+            );
+          }
+        },
+      ),
+    );
+  }
+}
+
+class BoardPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('라운지'),
+      ),
+      body: Column(
+        children: [
+          Container(
+            height: 1.0,
+            width: 750.0,
+            color: Colors.black,
+          ),
+          Center(
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: SearchBar(
+                trailing: [Icon(Icons.search)],
+                hintText: "검색어를 입력하세요",
+              ),
+            ),
+          ),
+          SizedBox(height: 20), // 검색창과 공지사항 사이의 간격
+          Text(
+            '공지사항',
+            style: TextStyle(fontSize: 20),
+          ),
+          SizedBox(height: 20), // 공지사항과 다음 선 사이의 간격
+          Container(
+            height: 1.0,
+            width: 750.0,
+            color: Colors.grey,
+          ),
+          SizedBox(height: 60),
+          Container(
+            height: 1.0,
+            width: 750.0,
+            color: Colors.grey,
+          ),
+          SizedBox(height: 70),
+          Container(
+            height: 1.0,
+            width: 750.0,
+            color: Colors.grey,
+          ),
+          SizedBox(height: 70),
+          Container(
+            height: 1.0,
+            width: 750.0,
+            color: Colors.grey,
+          ),
+          SizedBox(height: 70),
+          Container(
+            height: 1.0,
+            width: 750.0,
+            color: Colors.grey,
+          ),
+          SizedBox(height: 70),
+          Container(
+            height: 1.0,
+            width: 750.0,
+            color: Colors.grey,
+          ),
+        
+        ],
+      ),
+    );
+  }
+}
+
