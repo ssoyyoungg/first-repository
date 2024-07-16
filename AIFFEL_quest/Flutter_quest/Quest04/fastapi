@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-    Future<void> fetchData2() async { // 오른쪽 버튼 눌렀을 때(분리해서 출력하기 위해 2개 만듬)
+    Future<void> fetchData2() async { // 오른쪽 버튼 눌렀을 때(처음에는 분리가 안되고 두개가 한꺼번에 출력돼서 어떻게 수정해야될지 고민하다 2개 만들었음)
     try {
       // 입력된 URL 가져오기
       final response = await http.get(
@@ -124,5 +124,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-- 회고 :
 
+
+- 회고 : 다른부분들은 비교적 순조롭게 작성하다가 debug console에 출력하는 과정에서 어려움을 겪어서 이방법 저방법 다 찾아보다 notion에 올려주신 예시 코드를 활용해서 
+        코드를 완성하게 되었다 또, debug console에 출력 할 때 prediction_label과 prediction_score이 함께 출력되어 어떻게 나누어야 하나 고민하던 와중 상운님의 아이디어로
+        비교적 간단하게 나눌수 있는 방법을 찾게 되었다. 
