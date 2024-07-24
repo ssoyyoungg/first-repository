@@ -1,0 +1,498 @@
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'youhealth',
+      home: MyPage(),
+    );
+  }
+}
+
+class Checkup extends StatefulWidget {
+  @override
+  _CheckupState createState() => _CheckupState();
+}
+
+class _CheckupState extends State<Checkup> {
+  int screenIndex = 0;
+  final ImagePicker _picker = ImagePicker();
+  XFile? _imageFile;
+
+  Future<void> _pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = pickedFile;
+      });
+    }
+  }
+
+  Future<void> _selectImageFromGallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = pickedFile;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('검진', style: TextStyle(color: Colors.black)),
+        actions: [
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+        ],
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            height: 1.0,
+            width: double.infinity,
+            color: Colors.black,
+          ),
+          SizedBox(height: 90), // AppBar와 Text 사이의 여백
+          TextButton(
+            onPressed: _pickImage,
+            child: Text('사진 촬영하기'),
+          ),
+          TextButton(
+            onPressed: _selectImageFromGallery,
+            child: Text('갤러리에서 사진 가져오기'),
+          ),
+          _imageFile != null
+              ? Image.file(
+                  File(_imageFile!.path),
+                  height: 200,
+                  width: 200,
+                )
+              : Container(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: screenIndex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.health_and_safety), label: '검진'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
+          BottomNavigationBarItem(icon: Icon(Icons.live_help), label: '고객센터'),
+        ],
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black54,
+        onTap: (value) {
+          if (value != screenIndex) {
+            setState(() {
+              screenIndex = value;
+            });
+
+            if (value == 0) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => Checkup()),
+                (Route<dynamic> route) => false,
+              );
+            } else if (value == 1) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => MyPage()),
+                (Route<dynamic> route) => false,
+              );
+            } else if (value == 2) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => Helppage()),
+                (Route<dynamic> route) => false,
+              );
+            }
+          }
+        },
+      ),
+    );
+  }
+}
+
+class MyPage extends StatefulWidget {
+  @override
+  _MyPageState createState() => _MyPageState();
+}
+
+class _MyPageState extends State<MyPage> {
+  int screenIndex = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('나의 건강', style: TextStyle(color: Colors.black)),
+        actions: [
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+        ],
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            height: 1.0,
+            width: double.infinity,
+            color: Colors.black,
+          ),
+          SizedBox(height: 90), // AppBar와 Text 사이의 여백
+          Text(
+            '건강검진 결과',
+            style: TextStyle(fontSize: 20),
+          ),
+          SizedBox(height: 90),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DetailPage1()),
+                  );
+                },
+                child: Container(
+                  width: 100,
+                  height: 50,
+                  padding: EdgeInsets.all(12),
+                  margin: EdgeInsets.all(30),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15),
+                    ),
+                  ),
+                  child: Text(
+                    "일반",
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DetailPage2()),
+                  );
+                },
+                child: Container(
+                  width: 100,
+                  height: 50,
+                  padding: EdgeInsets.all(12),
+                  margin: EdgeInsets.all(30),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15),
+                    ),
+                  ),
+                  child: Text(
+                    "혈액",
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DetailPage3()),
+                  );
+                },
+                child: Container(
+                  width: 100,
+                  height: 50,
+                  padding: EdgeInsets.all(12),
+                  margin: EdgeInsets.all(30),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15),
+                    ),
+                  ),
+                  child: Text(
+                    "구강",
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: screenIndex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.health_and_safety), label: '검진'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
+          BottomNavigationBarItem(icon: Icon(Icons.live_help), label: '고객센터'),
+        ],
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black54,
+        onTap: (value) {
+          if (value != screenIndex) {
+            setState(() {
+              screenIndex = value;
+            });
+
+            if (value == 0) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => Checkup()),
+                (Route<dynamic> route) => false,
+              );
+            } else if (value == 1) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => MyPage()),
+                (Route<dynamic> route) => false,
+              );
+            } else if (value == 2) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => Helppage()),
+                (Route<dynamic> route) => false,
+              );
+            }
+          }
+        },
+      ),
+    );
+  }
+}
+
+class DetailPage1 extends StatefulWidget {
+  @override
+  _DetailPage1State createState() => _DetailPage1State();
+}
+
+class _DetailPage1State extends State<DetailPage1> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('일반', style: TextStyle(color: Colors.black)),
+        actions: [
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+        ],
+      ),
+      body: Center(
+        child: DataTable(
+          columns: [
+            DataColumn(label: Text('검진종류')),
+            DataColumn(label: Text('검진일자')),
+            DataColumn(label: Text('결과')),
+          ],
+          rows: [
+            DataRow(cells: [
+              DataCell(Text('검진1')),
+              DataCell(Text('2020-06-01')),
+              DataCell(Text('BMI : 18.5 (정상)')),
+            ]),
+            DataRow(cells: [
+              DataCell(Text('검진2')),
+              DataCell(Text('2022-06-01')),
+              DataCell(Text('BMI : 18.5 (정상)')),
+            ]),
+            DataRow(cells: [
+              DataCell(Text('검진3')),
+              DataCell(Text('2024-06-01')),
+              DataCell(Text('BMI : 18.5 (정상)')),
+            ]),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DetailPage2 extends StatefulWidget {
+  @override
+  _DetailPage2State createState() => _DetailPage2State();
+}
+
+class _DetailPage2State extends State<DetailPage2> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('혈액', style: TextStyle(color: Colors.black)),
+        actions: [
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+        ],
+      ),
+      body: Center(
+        child: DataTable(
+          columns: [
+            DataColumn(label: Text('검진종류')),
+            DataColumn(label: Text('검진일자')),
+            DataColumn(label: Text('결과')),
+          ],
+          rows: [
+            DataRow(cells: [
+              DataCell(Text('검진1')),
+              DataCell(Text('2020-06-01')),
+              DataCell(Text('혈압 : 정상')),
+            ]),
+            DataRow(cells: [
+              DataCell(Text('검진2')),
+              DataCell(Text('2022-06-01')),
+              DataCell(Text('혈압 : 정상')),
+            ]),
+            DataRow(cells: [
+              DataCell(Text('검진3')),
+              DataCell(Text('2024-06-01')),
+              DataCell(Text('혈압 : 정상')),
+            ]),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DetailPage3 extends StatefulWidget {
+  @override
+  _DetailPage3State createState() => _DetailPage3State();
+}
+
+class _DetailPage3State extends State<DetailPage3> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('구강', style: TextStyle(color: Colors.black)),
+        actions: [
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+        ],
+      ),
+      body: Center(
+        child: DataTable(
+          columns: [
+            DataColumn(label: Text('검진종류')),
+            DataColumn(label: Text('검진일자')),
+            DataColumn(label: Text('결과')),
+          ],
+          rows: [
+            DataRow(cells: [
+              DataCell(Text('검진1')),
+              DataCell(Text('2020-06-01')),
+              DataCell(Text('충치 : 정상')),
+            ]),
+            DataRow(cells: [
+              DataCell(Text('검진2')),
+              DataCell(Text('2022-06-01')),
+              DataCell(Text('충치 : 정상')),
+            ]),
+            DataRow(cells: [
+              DataCell(Text('검진3')),
+              DataCell(Text('2024-06-01')),
+              DataCell(Text('충치 : 정상')),
+            ]),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Helppage extends StatefulWidget {
+  @override
+  _HelppageState createState() => _HelppageState();
+}
+
+class _HelppageState extends State<Helppage> {
+  int screenIndex = 2;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('고객센터', style: TextStyle(color: Colors.black)),
+        actions: [
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+          IconButton(icon: Icon(Icons.local_hospital, color: Colors.black), onPressed: () {}),
+        ],
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(height: 90),
+            Text(
+              '고객센터 문의',
+              style: TextStyle(fontSize: 20),
+            ),    
+            SizedBox(height: 90),     
+          SearchBar(
+        trailing: [Icon(Icons.search)],
+        hintText: "무엇을 도와드릴까요?",
+        // hintStyle: MaterialStateProperty.all(TextStyle(color: Colors.grey.shade400)),
+      ),
+      ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: screenIndex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.health_and_safety), label: '검진'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
+          BottomNavigationBarItem(icon: Icon(Icons.live_help), label: '고객센터'),
+        ],
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black54,
+        onTap: (value) {
+          if (value != screenIndex) {
+            setState(() {
+              screenIndex = value;
+            });
+
+            if (value == 0) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => Checkup()),
+                (Route<dynamic> route) => false,
+              );
+            } else if (value == 1) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => MyPage()),
+                (Route<dynamic> route) => false,
+              );
+            } else if (value == 2) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => Helppage()),
+                (Route<dynamic> route) => false,
+              );
+            }
+          }
+        },
+      ),
+    );
+  }
+}
